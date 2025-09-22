@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --main-bg-color: #000000;
-    --main-card-bg-color: #0a0a0a;
+    --main-bg-color: #181818;
+    --main-card-bg-color: #27272a;
+    --main-search-bg-color: #35353b;
 
     --main-text-color: #f5f5f5;
 
@@ -27,6 +28,7 @@
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     min-height: 100vh;
+    transition: background-color .5s;
 }
 
 .container {
@@ -50,14 +52,15 @@
 }
 
 #form {
-    background-color: var(--main-card-bg-color);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
 }
 
 .input {
     font-size: 1rem;
     color: inherit;
-    background-color: var(--main-card-bg-color);
+    background-color: transparent;
+    border-radius: 20px;
     padding: 0.5rem 1rem;
     max-width: 150px;
     border: 1px solid transparent;
