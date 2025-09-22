@@ -35,6 +35,10 @@
     gap: 50px;
 }
 
+.search-bar {
+    padding: 1rem;
+}
+
 .heading {
     font-weight: 700;
     font-size: 6rem;
@@ -45,13 +49,19 @@
     font-weight: 400;
 }
 
+#form {
+    background-color: var(--main-card-bg-color);
+    border-radius: 20px;
+}
+
 .input {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: inherit;
-    background-color: transparent;
+    background-color: var(--main-card-bg-color);
     padding: 0.5rem 1rem;
-    border: none;
-    border-bottom: 2px solid var(--main-border-color);
+    max-width: 150px;
+    border: 1px solid transparent;
+    border-radius: 20px;
 }
 
 .input:focus-visible {
@@ -64,4 +74,12 @@
     background-color: transparent;
     padding: 0.5rem 1rem;
     border: none;
+}
+
+svg {
+    vertical-align: middle;
+}
+
+svg:hover {
+    cursor: pointer;
 }

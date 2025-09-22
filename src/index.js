@@ -1,11 +1,12 @@
 import "./style.css";
 import "./home"
+import { updateDisplay } from "./home";
 
-// const form = document.getElementById("form");
-// const formInput = document.getElementById("formInput");
-// form.addEventListener("submit", (e) => {
-//     const placeName = formInput.value;
-//     console.log(getWeather(placeName));
-//     formInput.value = "";
-//     e.preventDefault();
-// })
+const form = document.getElementById("form");
+const formInput = document.getElementById("formInput");
+form.addEventListener("submit", (e) => {
+    const cityName = formInput.value;
+    updateDisplay(cityName);
+    formInput.value = "";
+    e.preventDefault();
+})
