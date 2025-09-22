@@ -2,6 +2,8 @@ import "./style.css";
 import "./home"
 import { updateDisplay } from "./home";
 
+updateDisplay("Medina");
+
 const form = document.getElementById("form");
 const formInput = document.getElementById("formInput");
 form.addEventListener("submit", (e) => {
