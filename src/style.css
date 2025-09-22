@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    --main-bg-color: #121212;
+    --main-bg-color: #000000;
+    --main-card-bg-color: #0a0a0a;
+
     --main-text-color: #f5f5f5;
 
     --main-border-color: #808080;
@@ -10,17 +14,35 @@
     padding: 0;
 }
 
-.main {
+.main,
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .main {
+    font-size: 1rem;
+    font-family: "Noto Sans", Arial, Helvetica, sans-serif;
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
     min-height: 100vh;
+}
+
+.container {
+    padding: 2rem;
+    text-align: center;
+    gap: 50px;
+}
+
+.heading {
+    font-weight: 700;
+    font-size: 6rem;
+}
+
+.sub-heading {
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 .input {
