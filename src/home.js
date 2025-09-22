@@ -3,7 +3,6 @@ import { getWeather } from "./weather";
 const mainDiv = document.getElementById("main");
 
 export async function updateDisplay(cityName) {
-    // --main - bg - color: ;
     const homeDiv = document.getElementById("home");
     homeDiv.innerHTML = "";
     const result = await getWeather(cityName);
@@ -13,11 +12,11 @@ export async function updateDisplay(cityName) {
     const sunriseTime = result.currentConditions.sunrise;
 
     if (currTime > sunsetTime || currTime < sunriseTime) {
-        mainDiv.style.color = "#f5f5f5"
-        mainDiv.style.backgroundColor = "#020111";
+        mainDiv.classList.add("night-theme");
+        mainDiv.classList.remove("day-theme");
     } else {
-        mainDiv.style.color = "#162A33"
-        mainDiv.style.backgroundColor = "#82C8E5";
+        mainDiv.classList.add("day-theme");
+        mainDiv.classList.remove("night-theme");
     }
 
     const headingDiv = document.createElement("div");
@@ -32,8 +31,7 @@ export async function updateDisplay(cityName) {
     tempHeading.innerText = result.currentConditions.temp + "°";
 
     const conditionSubHeading = document.createElement("h2");
-    conditionSubHeading.classList.add("sub-heading");
-    conditionSubHeading.style.color = "#969699";
+    conditionSubHeading.classList.add("sub-heading", "info");
     conditionSubHeading.innerText = result.currentConditions.conditions;
 
     const highLowSubHeading = document.createElement("h2");

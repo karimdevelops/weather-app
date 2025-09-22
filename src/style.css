@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --main-bg-color: #181818;
     --main-card-bg-color: #27272a;
     --main-search-bg-color: #35353b;
 
-    --main-text-color: #f5f5f5;
-
     --main-border-color: #808080;
+}
+
+.night-theme {
+    --main-text-color: #f5f5f5;
+    --secondary-text-color: #969699;
+    --main-bg-color: #020111;
+}
+
+.day-theme {
+    --main-bg-color: #82C8E5;
+    --main-text-color: #162A33;
+    --secondary-text-color: #345766;
 }
 
 * {
@@ -49,6 +58,10 @@
 .sub-heading {
     font-size: 1.25rem;
     font-weight: 400;
+}
+
+.info {
+    color: var(--secondary-text-color);
 }
 
 #form {
