@@ -1,8 +1,9 @@
 import "./style.css";
 import "./home"
+import "./svgIcons"
 import { updateDisplay } from "./home";
 
-updateDisplay("Glasgow Scotland");
+updateDisplay("Dubai");
 
 const form = document.getElementById("form");
 const formInput = document.getElementById("formInput");

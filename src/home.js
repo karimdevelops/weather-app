@@ -66,17 +66,18 @@ export async function updateDisplay(cityName) {
     for (const day of days) {
         dayCount++;
         for (const hour of day.hours) {
-            if ((dayCount < 2 && hour.datetime > currTime && count < 24) || (dayCount > 1 && count < 24)) {
+            if ((dayCount < 2 && hour.datetime > currTime && count < 24)
+                || (dayCount > 1 && count < 24)) {
                 const hourDiv = document.createElement("div");
                 hourDiv.classList.add("flex-container");
                 const hourTimeDiv = document.createElement("div");
-                const hourIconDiv = document.createElement("div");
+                const hourIconDiv = document.createElement("img");
                 const hourTempDiv = document.createElement("div");
 
                 if (count == 0) {
                     hourTimeDiv.innerText = "Now";
                     hourTimeDiv.style.fontWeight = 700;
-                    hourIconDiv.innerHTML = icons[result.currentConditions.icon];
+                    hourIconDiv.src = icons[result.currentConditions.icon];
                     hourTempDiv.innerHTML = result.currentConditions.temp + "°";
                 } else {
 
@@ -84,7 +85,7 @@ export async function updateDisplay(cityName) {
                     const hourTime = format(date, "h a");
                     hourTimeDiv.innerText = hourTime;
 
-                    hourIconDiv.innerHTML = icons[hour.icon];
+                    hourIconDiv.src = icons[hour.icon];
                     hourTempDiv.innerText = hour.temp + "°";
                 }
 
