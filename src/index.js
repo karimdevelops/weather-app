@@ -2,7 +2,7 @@ import "./style.css";
 import "./home"
 import { updateDisplay } from "./home";
 
-updateDisplay("Medina");
+updateDisplay("Onatario");
 
 const form = document.getElementById("form");
 const formInput = document.getElementById("formInput");
