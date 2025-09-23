@@ -3,6 +3,14 @@
 :root {
     /* --main-card-bg-color: #27272a; */
     --main-border-color: #808080;
+    --main-bg-color: #000000;
+    --main-card-bg-color: rgba(255, 255, 255, 0.1);
+
+    --main-text-color: #f5f5f5;
+    --secondary-text-color: #969699;
+
+    --main-border-color: #808080;
+    --main-search-bg-color: rgba(255, 255, 255, 0.1);
 }
 
 .night-theme {

@@ -1,7 +1,8 @@
 import { getWeather } from "./weather";
+import { icons } from "./svgIcons";
 import { format } from "date-fns";
 
-const mainDiv = document.getElementById("main");
+// const mainDiv = document.getElementById("main");
 
 export async function updateDisplay(cityName) {
     const homeDiv = document.getElementById("home");
@@ -9,16 +10,16 @@ export async function updateDisplay(cityName) {
     const result = await getWeather(cityName);
     console.log(result);
     const currTime = result.currentConditions.datetime;
-    const sunsetTime = result.currentConditions.sunset;
-    const sunriseTime = result.currentConditions.sunrise;
+    // const sunsetTime = result.currentConditions.sunset;
+    // const sunriseTime = result.currentConditions.sunrise;
 
-    if (currTime > sunsetTime || currTime < sunriseTime) {
-        mainDiv.classList.add("night-theme");
-        mainDiv.classList.remove("day-theme");
-    } else {
-        mainDiv.classList.add("day-theme");
-        mainDiv.classList.remove("night-theme");
-    }
+    // if (currTime > sunsetTime || currTime < sunriseTime) {
+    //     mainDiv.classList.add("night-theme");
+    //     mainDiv.classList.remove("day-theme");
+    // } else {
+    //     mainDiv.classList.add("day-theme");
+    //     mainDiv.classList.remove("night-theme");
+    // }
 
     const headingDiv = document.createElement("div");
 
@@ -60,15 +61,38 @@ export async function updateDisplay(cityName) {
     hoursForecastSubHeading.innerText = "24 Hour Forecast";
 
     let count = 0;
+    let dayCount = 0;
 
     for (const day of days) {
+        dayCount++;
         for (const hour of day.hours) {
-            if (hour.datetime > currTime && count <= 24) {
+            if ((dayCount < 2 && hour.datetime > currTime && count < 24) || (dayCount > 1 && count < 24)) {
                 const hourDiv = document.createElement("div");
-                const date = new Date(`2025-01-01T${hour.datetime}`)
-                const hourTime = format(date, "h a")
-                hourDiv.innerText = hourTime;
+                hourDiv.classList.add("flex-container");
+                const hourTimeDiv = document.createElement("div");
+                const hourIconDiv = document.createElement("div");
+                const hourTempDiv = document.createElement("div");
+
+                if (count == 0) {
+                    hourTimeDiv.innerText = "Now";
+                    hourTimeDiv.style.fontWeight = 700;
+                    hourIconDiv.innerHTML = icons[result.currentConditions.icon];
+                    hourTempDiv.innerHTML = result.currentConditions.temp + "°";
+                } else {
+
+                    const date = new Date(`2025-01-01T${hour.datetime}`);
+                    const hourTime = format(date, "h a");
+                    hourTimeDiv.innerText = hourTime;
+
+                    hourIconDiv.innerHTML = icons[hour.icon];
+                    hourTempDiv.innerText = hour.temp + "°";
+                }
+
+                hourDiv.appendChild(hourTimeDiv);
+                hourDiv.appendChild(hourIconDiv);
+                hourDiv.appendChild(hourTempDiv);
                 hoursDiv.appendChild(hourDiv);
+
                 count++;
             }
         }

@@ -2,7 +2,7 @@ import "./style.css";
 import "./home"
 import { updateDisplay } from "./home";
 
-updateDisplay("Onatario");
+updateDisplay("Glasgow Scotland");
 
 const form = document.getElementById("form");
 const formInput = document.getElementById("formInput");
