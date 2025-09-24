@@ -4,13 +4,12 @@
     /* --main-card-bg-color: #27272a; */
     --main-border-color: #808080;
     --main-bg-color: #121212;
-    --main-card-bg-color: rgba(255, 255, 255, 0.1);
+    --main-card-bg-color: rgba(104, 107, 255, 0.1);
 
     --main-text-color: #f5f5f5;
-    --secondary-text-color: #969699;
+    --secondary-text-color: rgb(192, 193, 255);
 
     --main-border-color: #808080;
-    --main-search-bg-color: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-track {
@@ -24,7 +23,6 @@
     --secondary-text-color: #969699;
 
     --main-card-bg-color: rgba(255, 255, 255, 0.1);
-    --main-search-bg-color: rgba(255, 255, 255, 0.1);
 }
 
 .day-theme {
@@ -33,7 +31,6 @@
     --secondary-text-color: #345766;
 
     --main-card-bg-color: rgba(0, 0, 0, 0.1);
-    --main-search-bg-color: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -44,7 +41,9 @@
 .grid-container {
     display: grid;
     align-items: center;
+    justify-items: center;
     grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 .flex-container {
@@ -52,6 +51,10 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+.space-between {
+    justify-content: space-between;
 }
 
 .flex-container-horizontal {
@@ -67,15 +70,18 @@
     font-size: 1rem;
     font-family: "Noto Sans", Arial, Helvetica, sans-serif;
     color: var(--main-text-color);
-    background-color: var(--main-bg-color);
+    background: url("./night.jpg");
+    background-size: cover;
     min-height: 100vh;
     transition: background-color .5s;
 }
 
 .components {
     display: grid;
-    grid-template-areas: "hourly-forecast hourly-forecast hourly-forecast gif"
-        "days-forecast . . gif";
+    grid-template-areas: "hourly-forecast hourly-forecast hourly-forecast"
+        "days-forecast sunset-card sunrise-card"
+        "days-forecast feelslike-card humidity-card"
+        "days-forecast pressure-card visibility-card";
     gap: 20px;
 }
 
@@ -91,6 +97,30 @@
     grid-area: days-forecast;
 }
 
+.sunset-card {
+    grid-area: sunset-card;
+}
+
+.sunrise-card {
+    grid-area: sunrise-card;
+}
+
+.feelslike-card {
+    grid-area: feelslike-card;
+}
+
+.humidity-card {
+    grid-area: humidity-card;
+}
+
+.pressure-card {
+    grid-area: pressure-card;
+}
+
+.visibility-card {
+    grid-area: visibility-card;
+}
+
 .container {
     padding: 1rem;
     text-align: center;
@@ -98,7 +128,7 @@
 }
 
 .search-bar {
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .hours {
@@ -106,7 +136,7 @@
     overflow-x: auto;
     white-space: nowrap;
     padding: 1rem;
-    scrollbar-color: #696969 var(--main-card-bg-color);
+    scrollbar-color: #696969 transparent;
     scrollbar-width: thin;
     user-select: none;
 }
@@ -115,6 +145,11 @@
     background-color: var(--main-card-bg-color);
     border-radius: 20px;
     padding: 1rem;
+}
+
+.card-content {
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .heading {
@@ -136,7 +171,7 @@
 }
 
 #form {
-    background-color: var(--main-search-bg-color);
+    background-color: var(--main-card-bg-color);
     border-radius: 20px;
 }
 
@@ -161,6 +196,12 @@
     background-color: transparent;
     padding: 0.5rem 1rem;
     border: none;
+}
+
+
+.gif {
+    width: auto;
+    height: 300px;
 }
 
 svg {

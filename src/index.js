@@ -1,6 +1,5 @@
 import "./style.css";
 import "./home"
-import "./svgIcons"
 import { updateDisplay } from "./home";
 
 updateDisplay("Dubai");

@@ -1,13 +1,13 @@
 import { getWeather } from "./weather";
 import { icons } from "./svgIcons";
 import { format } from "date-fns";
-import rainGif from "./rain.gif";
 
 // const mainDiv = document.getElementById("main");
 
 export async function updateDisplay(cityName) {
     const homeDiv = document.getElementById("home");
     homeDiv.innerHTML = "";
+
     const result = await getWeather(cityName);
     console.log(result);
     const currTime = result.currentConditions.datetime;
@@ -121,7 +121,8 @@ export async function updateDisplay(cityName) {
         const currDayName = format(currDate, "EEEE");
 
         const dayNameDiv = document.createElement("div");
-        dayNameDiv.innerText = currDayName;
+        if (i == 0) dayNameDiv.innerText = "Today";
+        else dayNameDiv.innerText = currDayName;
 
         const dayImg = document.createElement("img");
         dayImg.src = icons[currDay.icon];
@@ -149,9 +150,103 @@ export async function updateDisplay(cityName) {
 
     componentsDiv.appendChild(daysForecastDiv);
 
-    const weatherGif = document.createElement("img");
-    weatherGif.classList.add("card", "gif");
-    weatherGif.src = rainGif;
-    componentsDiv.appendChild(weatherGif);
+    const sunsetCardDiv = document.createElement("div");
+    sunsetCardDiv.classList.add("card", "flex-container", "sunset-card");
 
+    const sunsetCardHeading = document.createElement("span");
+    sunsetCardHeading.classList.add("subheading-card", "info");
+    sunsetCardHeading.innerText = "Sunset";
+
+    const sunsetCardContentDiv = document.createElement("div");
+    sunsetCardContentDiv.classList.add("card-content");
+    const sunsetDateTime = new Date(`2025-01-01T${day1.sunset}`);
+    const sunsetTime = format(sunsetDateTime, "h:mm a");
+    sunsetCardContentDiv.innerText = sunsetTime;
+
+    sunsetCardDiv.appendChild(sunsetCardHeading);
+    sunsetCardDiv.appendChild(sunsetCardContentDiv);
+
+    componentsDiv.appendChild(sunsetCardDiv);
+
+    const sunriseCardDiv = document.createElement("div");
+    sunriseCardDiv.classList.add("card", "flex-container", "sunrise-card");
+
+    const sunriseCardHeading = document.createElement("span");
+    sunriseCardHeading.classList.add("subheading-card", "info");
+    sunriseCardHeading.innerText = "Sunrise";
+
+    const sunriseCardContentDiv = document.createElement("div");
+    sunriseCardContentDiv.classList.add("card-content");
+    const sunriseDateTime = new Date(`2025-01-01T${day1.sunrise}`);
+    const sunriseTime = format(sunriseDateTime, "h:mm a");
+    sunriseCardContentDiv.innerText = sunriseTime;
+
+    sunriseCardDiv.appendChild(sunriseCardHeading);
+    sunriseCardDiv.appendChild(sunriseCardContentDiv);
+
+    componentsDiv.appendChild(sunriseCardDiv);
+
+    const feelslikeCardDiv = document.createElement("div");
+    feelslikeCardDiv.classList.add("card", "flex-container", "feelslike-card");
+
+    const feelslikeCardHeading = document.createElement("span");
+    feelslikeCardHeading.classList.add("subheading-card", "info");
+    feelslikeCardHeading.innerText = "Feels Like";
+
+    const feelslikeCardContentDiv = document.createElement("div");
+    feelslikeCardContentDiv.classList.add("card-content");
+    feelslikeCardContentDiv.innerText = result.currentConditions.feelslike + "°";
+
+    feelslikeCardDiv.appendChild(feelslikeCardHeading);
+    feelslikeCardDiv.appendChild(feelslikeCardContentDiv);
+
+    componentsDiv.appendChild(feelslikeCardDiv);
+
+    const humidityCardDiv = document.createElement("div");
+    humidityCardDiv.classList.add("card", "flex-container", "humidity-card");
+
+    const humidityCardHeading = document.createElement("span");
+    humidityCardHeading.classList.add("subheading-card", "info");
+    humidityCardHeading.innerText = "Humidity";
+
+    const humidityCardContentDiv = document.createElement("div");
+    humidityCardContentDiv.classList.add("card-content");
+    humidityCardContentDiv.innerText = result.currentConditions.humidity + "%";
+
+    humidityCardDiv.appendChild(humidityCardHeading);
+    humidityCardDiv.appendChild(humidityCardContentDiv);
+
+    componentsDiv.appendChild(humidityCardDiv);
+
+    const pressureCardDiv = document.createElement("div");
+    pressureCardDiv.classList.add("card", "flex-container", "pressure-card");
+
+    const pressureCardHeading = document.createElement("span");
+    pressureCardHeading.classList.add("subheading-card", "info");
+    pressureCardHeading.innerText = "Pressure";
+
+    const pressureCardContentDiv = document.createElement("div");
+    pressureCardContentDiv.classList.add("card-content");
+    pressureCardContentDiv.innerText = result.currentConditions.pressure + " hPa";
+
+    pressureCardDiv.appendChild(pressureCardHeading);
+    pressureCardDiv.appendChild(pressureCardContentDiv);
+
+    componentsDiv.appendChild(pressureCardDiv);
+
+    const visibilityCardDiv = document.createElement("div");
+    visibilityCardDiv.classList.add("card", "flex-container", "visibility-card");
+
+    const visibilityCardHeading = document.createElement("span");
+    visibilityCardHeading.classList.add("subheading-card", "info");
+    visibilityCardHeading.innerText = "Visibility";
+
+    const visibilityCardContentDiv = document.createElement("div");
+    visibilityCardContentDiv.classList.add("card-content");
+    visibilityCardContentDiv.innerText = result.currentConditions.visibility + " km";
+
+    visibilityCardDiv.appendChild(visibilityCardHeading);
+    visibilityCardDiv.appendChild(visibilityCardContentDiv);
+
+    componentsDiv.appendChild(visibilityCardDiv);
 }
