@@ -14,6 +14,8 @@ import thunderRain from "./icons/thunder-rain.svg";
 import thunderShowersDay from "./icons/thunder-showers-day.svg";
 import thunderShowersNight from "./icons/thunder-showers-night.svg";
 import wind from "./icons/wind.svg";
+import tempMax from "./icons/max-temp.svg";
+import tempMin from "./icons/min-temp.svg";
 
 export const icons = {
     "clear-day": clearDay,
@@ -32,4 +34,6 @@ export const icons = {
     "thunder-showers-day": thunderShowersDay,
     "thunder-showers-night": thunderShowersNight,
     "wind": wind,
+    "tempMax": tempMax,
+    "tempMin": tempMin,
 };

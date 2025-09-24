@@ -1,6 +1,7 @@
 import { getWeather } from "./weather";
 import { icons } from "./svgIcons";
 import { format } from "date-fns";
+import rainGif from "./rain.gif";
 
 // const mainDiv = document.getElementById("main");
 
@@ -48,53 +49,56 @@ export async function updateDisplay(cityName) {
     homeDiv.appendChild(headingDiv);
 
     const componentsDiv = document.createElement("div");
+    componentsDiv.classList.add("components");
+    homeDiv.appendChild(componentsDiv);
 
     const day1 = result.days[0]
     const day2 = result.days[1]
     const days = [day1, day2]
     const hoursForecastDiv = document.createElement("div");
-    hoursForecastDiv.classList.add("flex-container", "card");
+    hoursForecastDiv.classList.add("flex-container", "card", "hourly-forecast");
     const hoursDiv = document.createElement("div");
-    hoursDiv.classList.add("flex-container", "flex-container-horizontal", "hours-forecast");
-    const hoursForecastSubHeading = document.createElement("h2");
-    hoursForecastSubHeading.classList.add("sub-heading", "info");
+    hoursDiv.classList.add("flex-container", "flex-container-horizontal", "hours");
+    const hoursForecastSubHeading = document.createElement("span");
+    hoursForecastSubHeading.classList.add("sub-heading-card", "info");
     hoursForecastSubHeading.innerText = "24 Hour Forecast";
 
-    let count = 0;
+    let hoursCount = 0;
     let dayCount = 0;
+    let isCurrHour = true;
 
     for (const day of days) {
         dayCount++;
         for (const hour of day.hours) {
-            if ((dayCount < 2 && hour.datetime > currTime && count < 24)
-                || (dayCount > 1 && count < 24)) {
+            if ((dayCount < 2 && hour.datetime > currTime && hoursCount < 24)
+                || (dayCount > 1 && hoursCount < 24)) {
                 const hourDiv = document.createElement("div");
                 hourDiv.classList.add("flex-container");
                 const hourTimeDiv = document.createElement("div");
-                const hourIconDiv = document.createElement("img");
+                const hourIconImg = document.createElement("img");
                 const hourTempDiv = document.createElement("div");
 
-                if (count == 0) {
+                if (isCurrHour) {
                     hourTimeDiv.innerText = "Now";
                     hourTimeDiv.style.fontWeight = 700;
-                    hourIconDiv.src = icons[result.currentConditions.icon];
+                    hourIconImg.src = icons[result.currentConditions.icon];
                     hourTempDiv.innerHTML = result.currentConditions.temp + "°";
+                    isCurrHour = false;
                 } else {
 
                     const date = new Date(`2025-01-01T${hour.datetime}`);
                     const hourTime = format(date, "h a");
                     hourTimeDiv.innerText = hourTime;
 
-                    hourIconDiv.src = icons[hour.icon];
+                    hourIconImg.src = icons[hour.icon];
                     hourTempDiv.innerText = hour.temp + "°";
+                    hoursCount++;
                 }
 
                 hourDiv.appendChild(hourTimeDiv);
-                hourDiv.appendChild(hourIconDiv);
+                hourDiv.appendChild(hourIconImg);
                 hourDiv.appendChild(hourTempDiv);
                 hoursDiv.appendChild(hourDiv);
-
-                count++;
             }
         }
     }
@@ -102,5 +106,52 @@ export async function updateDisplay(cityName) {
     hoursForecastDiv.appendChild(hoursForecastSubHeading);
     hoursForecastDiv.appendChild(hoursDiv);
     componentsDiv.appendChild(hoursForecastDiv);
-    homeDiv.appendChild(componentsDiv);
+
+    const daysForecastDiv = document.createElement("div");
+    daysForecastDiv.classList.add("card", "days-forecast");
+    const daysForecastSubHeading = document.createElement("span");
+    daysForecastSubHeading.classList.add("sub-heading-card", "info");
+    daysForecastSubHeading.innerText = "7-Day Forecast";
+
+    daysForecastDiv.appendChild(daysForecastSubHeading);
+
+    for (let i = 0; i < 7; i++) {
+        const currDay = result.days[i];
+        const currDate = new Date(currDay.datetime);
+        const currDayName = format(currDate, "EEEE");
+
+        const dayNameDiv = document.createElement("div");
+        dayNameDiv.innerText = currDayName;
+
+        const dayImg = document.createElement("img");
+        dayImg.src = icons[currDay.icon];
+
+        const dayForecastDiv = document.createElement("div");
+        dayForecastDiv.classList.add("grid-container");
+
+        const dayTempMaxDiv = document.createElement("div");
+        const dayTempMaxValDiv = document.createElement("div");
+        dayTempMaxValDiv.innerText = currDay.tempmax + "°";
+        dayTempMaxDiv.appendChild(dayTempMaxValDiv);
+
+        const dayTempMinDiv = document.createElement("div");
+        const dayTempMinValDiv = document.createElement("div");
+        dayTempMinValDiv.innerText = currDay.tempmin + "°";
+        dayTempMinDiv.appendChild(dayTempMinValDiv);
+
+        dayForecastDiv.appendChild(dayNameDiv);
+        dayForecastDiv.appendChild(dayImg);
+        dayForecastDiv.appendChild(dayTempMaxDiv);
+        dayForecastDiv.appendChild(dayTempMinDiv);
+
+        daysForecastDiv.appendChild(dayForecastDiv);
+    }
+
+    componentsDiv.appendChild(daysForecastDiv);
+
+    const weatherGif = document.createElement("img");
+    weatherGif.classList.add("card", "gif");
+    weatherGif.src = rainGif;
+    componentsDiv.appendChild(weatherGif);
+
 }
