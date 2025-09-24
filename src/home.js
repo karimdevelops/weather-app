@@ -72,7 +72,7 @@ export async function updateDisplay(cityName) {
     let hoursCount = 0;
     let dayCount = 0;
     let isCurrHour = true;
-
+    console.log(result);
     for (const day of days) {
         dayCount++;
         for (const hour of day.hours) {
@@ -83,12 +83,16 @@ export async function updateDisplay(cityName) {
                 const hourTimeDiv = document.createElement("div");
                 const hourIconImg = document.createElement("img");
                 const hourTempDiv = document.createElement("div");
+                const hourPreciDiv = document.createElement("div");
+                hourTempDiv.classList.add("hours-temp");
+                hourPreciDiv.classList.add("info");
 
                 if (isCurrHour) {
                     hourTimeDiv.innerText = "Now";
                     hourTimeDiv.style.fontWeight = 700;
                     hourIconImg.src = icons[result.currentConditions.icon];
                     hourTempDiv.innerHTML = result.currentConditions.temp + "°";
+                    hourPreciDiv.innerText = result.currentConditions.precipprob + "%";
                     isCurrHour = false;
                 } else {
 
@@ -98,12 +102,14 @@ export async function updateDisplay(cityName) {
 
                     hourIconImg.src = icons[hour.icon];
                     hourTempDiv.innerText = hour.temp + "°";
+                    hourPreciDiv.innerText = hour.precipprob + "%";
                     hoursCount++;
                 }
 
                 hourDiv.appendChild(hourTimeDiv);
                 hourDiv.appendChild(hourIconImg);
                 hourDiv.appendChild(hourTempDiv);
+                hourDiv.appendChild(hourPreciDiv);
                 hoursDiv.appendChild(hourDiv);
             }
         }
