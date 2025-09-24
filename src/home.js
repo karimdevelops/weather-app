@@ -250,7 +250,11 @@ export async function updateDisplay(cityName) {
 
     const visibilityCardContentDiv = document.createElement("div");
     visibilityCardContentDiv.classList.add("card-content");
-    visibilityCardContentDiv.innerText = result.currentConditions.visibility + " km";
+    if (result.currentConditions.visibility == null) {
+        visibilityCardContentDiv.innerText = "-";
+    } else {
+        visibilityCardContentDiv.innerText = result.currentConditions.visibility + " km";
+    }
 
     visibilityCardDiv.appendChild(visibilityCardHeading);
     visibilityCardDiv.appendChild(visibilityCardContentDiv);
