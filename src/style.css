@@ -22,7 +22,9 @@
     --main-text-color: #f5f5f5;
     --secondary-text-color: #969699;
 
-    --main-card-bg-color: rgba(255, 255, 255, 0.1);
+    --main-card-bg-color: rgba(104, 107, 255, 0.1);
+    --main-text-color: #f5f5f5;
+    --secondary-text-color: rgb(192, 193, 255);
 }
 
 .day-theme {
@@ -30,7 +32,9 @@
     --main-text-color: #162A33;
     --secondary-text-color: #345766;
 
-    --main-card-bg-color: rgba(0, 0, 0, 0.1);
+    --main-card-bg-color: rgba(109, 166, 187, 0.1);
+    --main-text-color: #f5f5f5;
+    --secondary-text-color: rgb(154, 228, 255);
 }
 
 * {
@@ -70,10 +74,8 @@
     font-size: 1rem;
     font-family: "Noto Sans", Arial, Helvetica, sans-serif;
     color: var(--main-text-color);
-    background: url("./night.jpg");
     background-size: cover;
     min-height: 100vh;
-    transition: background-color .5s;
 }
 
 .components {

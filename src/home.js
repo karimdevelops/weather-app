@@ -2,25 +2,32 @@ import { getWeather } from "./weather";
 import { icons } from "./svgIcons";
 import { format } from "date-fns";
 
+import night from "./night.jpg"
+import day from "./day.jpg"
+
 // const mainDiv = document.getElementById("main");
 
 export async function updateDisplay(cityName) {
+
     const homeDiv = document.getElementById("home");
     homeDiv.innerHTML = "";
 
     const result = await getWeather(cityName);
-    console.log(result);
-    const currTime = result.currentConditions.datetime;
-    // const sunsetTime = result.currentConditions.sunset;
-    // const sunriseTime = result.currentConditions.sunrise;
 
-    // if (currTime > sunsetTime || currTime < sunriseTime) {
-    //     mainDiv.classList.add("night-theme");
-    //     mainDiv.classList.remove("day-theme");
-    // } else {
-    //     mainDiv.classList.add("day-theme");
-    //     mainDiv.classList.remove("night-theme");
-    // }
+    const mainDiv = document.getElementById("main");
+    const currTime = result.currentConditions.datetime;
+    const sunsetTime = result.currentConditions.sunset;
+    const sunriseTime = result.currentConditions.sunrise;
+
+    if (currTime > sunsetTime || currTime < sunriseTime) {
+        mainDiv.classList.add("night-theme");
+        mainDiv.classList.remove("day-theme");
+        mainDiv.style.backgroundImage = `url(${night})`;
+    } else {
+        mainDiv.classList.add("day-theme");
+        mainDiv.classList.remove("night-theme");
+        mainDiv.style.backgroundImage = `url(${day})`;
+    }
 
     const headingDiv = document.createElement("div");
 
@@ -160,8 +167,8 @@ export async function updateDisplay(cityName) {
     const sunsetCardContentDiv = document.createElement("div");
     sunsetCardContentDiv.classList.add("card-content");
     const sunsetDateTime = new Date(`2025-01-01T${day1.sunset}`);
-    const sunsetTime = format(sunsetDateTime, "h:mm a");
-    sunsetCardContentDiv.innerText = sunsetTime;
+    const sunsetTimeFmt = format(sunsetDateTime, "h:mm a");
+    sunsetCardContentDiv.innerText = sunsetTimeFmt;
 
     sunsetCardDiv.appendChild(sunsetCardHeading);
     sunsetCardDiv.appendChild(sunsetCardContentDiv);
@@ -178,8 +185,8 @@ export async function updateDisplay(cityName) {
     const sunriseCardContentDiv = document.createElement("div");
     sunriseCardContentDiv.classList.add("card-content");
     const sunriseDateTime = new Date(`2025-01-01T${day1.sunrise}`);
-    const sunriseTime = format(sunriseDateTime, "h:mm a");
-    sunriseCardContentDiv.innerText = sunriseTime;
+    const sunriseTimeFmt = format(sunriseDateTime, "h:mm a");
+    sunriseCardContentDiv.innerText = sunriseTimeFmt;
 
     sunriseCardDiv.appendChild(sunriseCardHeading);
     sunriseCardDiv.appendChild(sunriseCardContentDiv);
