@@ -8,11 +8,10 @@ import day from "./day.jpg"
 // const mainDiv = document.getElementById("main");
 
 export async function updateDisplay(cityName) {
+    const result = await getWeather(cityName);
 
     const homeDiv = document.getElementById("home");
     homeDiv.innerHTML = "";
-
-    const result = await getWeather(cityName);
 
     const mainDiv = document.getElementById("main");
     const currTime = result.currentConditions.datetime;
