@@ -136,7 +136,6 @@
 }
 
 .hours {
-    max-width: 280px;
     overflow-x: auto;
     white-space: nowrap;
     padding: 1rem;
@@ -218,4 +217,17 @@ svg {
 
 svg:hover {
     cursor: pointer;
+}
+
+@media screen and (min-width:768px) {
+    .components {
+        grid-template-areas: "hourly-forecast hourly-forecast hourly-forecast"
+            "days-forecast sunset-card sunrise-card"
+            "days-forecast feelslike-card humidity-card"
+            "days-forecast pressure-card visibility-card";
+    }
+
+    .hours {
+        max-width: 720px;
+    }
 }
