@@ -76,14 +76,16 @@
     color: var(--main-text-color);
     background-size: cover;
     min-height: 100vh;
+    padding: 1rem;
 }
 
 .components {
     display: grid;
-    grid-template-areas: "hourly-forecast hourly-forecast hourly-forecast"
-        "days-forecast sunset-card sunrise-card"
-        "days-forecast feelslike-card humidity-card"
-        "days-forecast pressure-card visibility-card";
+    grid-template-areas: "hourly-forecast hourly-forecast"
+        "days-forecast days-forecast"
+        "sunset-card sunrise-card"
+        "feelslike-card humidity-card"
+        "pressure-card visibility-card";
     gap: 10px;
 }
 
@@ -134,7 +136,7 @@
 }
 
 .hours {
-    max-width: 720px;
+    max-width: 280px;
     overflow-x: auto;
     white-space: nowrap;
     padding: 1rem;
