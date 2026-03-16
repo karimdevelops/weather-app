@@ -72,7 +72,7 @@ export async function updateDisplay(cityName) {
     let hoursCount = 0;
     let dayCount = 0;
     let isCurrHour = true;
-    console.log(result);
+
     for (const day of days) {
         dayCount++;
         for (const hour of day.hours) {
