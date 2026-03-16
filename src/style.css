@@ -136,6 +136,7 @@
 }
 
 .hours {
+    max-width: 80vw;
     overflow-x: auto;
     white-space: nowrap;
     padding: 1rem;
@@ -228,6 +229,6 @@ svg:hover {
     }
 
     .hours {
-        max-width: 720px;
+        max-width: 80vw;
     }
 }
