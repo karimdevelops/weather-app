@@ -28,12 +28,12 @@
 }
 
 .day-theme {
-    --main-bg-color: #82C8E5;
+    --main-bg-color: #ffffff;
     --main-text-color: #162A33;
     --secondary-text-color: #345766;
 
-    --main-card-bg-color: rgba(109, 166, 187, 0.1);
-    --main-text-color: #f5f5f5;
+    --main-card-bg-color: rgba(109, 166, 187, 0.3);
+    --main-text-color: #ffffff;
     --secondary-text-color: rgb(154, 228, 255);
 }
 
